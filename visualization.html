@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Weather Visualization</title>
+
+    <script src="socket.io-client/dist/socket.io.js"></script>
+
+    <script type="text/javascript">
+
+        /* TEMP WEATHER JSON OBJECT */
+        var weatherTemp = 
+                { coord: { lon: 16.18, lat: 58.59 },
+                weather: 
+                [ { id: 801,
+                    main: 'Clouds',
+                    description: 'few clouds',
+                    icon: '02n' } ],
+                base: 'stations',
+                main: 
+                { temp: 13,
+                    pressure: 1015,
+                    humidity: 76,
+                    temp_min: 12,
+                    temp_max: 14 },
+                visibility: 10000,
+                wind: { speed: 5.1, deg: 220 },
+                clouds: { all: 24 },
+                dt: 1508091600,
+                sys: 
+                { type: 1,
+                    id: 5425,
+                    message: 0.0092,
+                    country: 'SE',
+                    sunrise: 1508045610,
+                    sunset: 1508082425 },
+                id: 2688368,
+                name: 'Norrkoping',
+                cod: 200 };
+
+        var weather;
+        var socket = io();
+
+        //Emit data into socket, server will return JSON object with weather
+        //data about city
+        function getData(city){
+            /*
+            socket.emit('getData', city, (data) => {
+                //If error when fetching weather data
+                if(data == "Data could not be fetched") {
+                    alert(data);
+                    return;
+                }
+                */
+                //weather = JSON.parse(data);
+
+                //Temp
+                weather = weatherTemp;
+                document.getElementById('result').innerHTML = 
+                "Weather in " + weather.name + ": \n" + 
+                weather.weather.description + "\n" +  
+                weather.main.temp_max + " celsius \n" +
+                weather.main.humidity + "% humidity \n" +
+                weather.clouds.all + "% clouds \n" +
+                "Wind " + weather.wind.speed + " m/s " + weather.wind.deg + " deg \n";
+
+            //})
+        }
+
+    
+    </script>
+  </head>
+  <body>
+    <h1>Real Time Weather Visualization</h1>
+    <input type="text" placeholder="Enter city" id="city"/>
+    <button onclick="getData(document.getElementById('city').value)">Search</button>
+    <p id="result"></p>
+  </body>
+</html>

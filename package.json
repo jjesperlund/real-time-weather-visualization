@@ -1,0 +1,25 @@
+{
+  "name": "real-time-weather-visualization",
+  "version": "1.0.0",
+  "description": "real time weather visualization ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjesperlund/real-time-weather-visualization.git"
+  },
+  "author": "Jesper Lund",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jjesperlund/real-time-weather-visualization/issues"
+  },
+  "homepage": "https://github.com/jjesperlund/real-time-weather-visualization#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "request": "^2.83.0",
+    "socket.io": "^2.0.3"
+  }
+}
